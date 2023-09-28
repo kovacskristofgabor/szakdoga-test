@@ -1,0 +1,53 @@
+<div class="p-4">
+    <div class="container">
+        <h1>{{title}}</h1>
+        <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="mb-3 col">
+                    <label class="form-label">Keresztnév</label>
+                    <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">Keresztnév szükséges!</div>
+                    </div>
+                </div>
+                <div class="mb-3 col">
+                    <label class="form-label">Vezetéknév</label>
+                    <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastName.errors.required">Vezetéknév szükséges!</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col">
+                    <label class="form-label">Felhasználónév</label>
+                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Felhasználónév szükséges!</div>
+                    </div>
+                </div>
+                <div class="mb-3 col">
+                    <label class="form-label">
+                        Jelszó
+                        <em *ngIf="id">(Hagyd üresen az eredeti jelszó megőrzéséhez!)</em>
+                    </label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Jelszó szükséges!</div>
+                        <div *ngIf="f.password.errors.minlength">A jelszónak legalább 6 karakter hosszúnak kell lennie!</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <button [disabled]="submitting" class="btn btn-primary">
+                    <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+                    Mentés
+                </button>
+                <a routerLink="/users" class="btn btn-link">Mégse</a>
+            </div>
+        </form>
+        <div *ngIf="loading" class="text-center m-5">
+            <span class="spinner-border spinner-border-lg align-center"></span>
+        </div>
+    </div>
+</div>
