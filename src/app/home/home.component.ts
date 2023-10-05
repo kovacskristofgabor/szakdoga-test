@@ -52,11 +52,11 @@ export class HomeComponent {
     dataSource: extend([], roomData) as Record<string, any>[],
     fields: {
       id: 'Id',
-      subject: { title: 'Summary', name: 'Subject' },
-      location: { title: 'Location', name: 'Location' },
-      description: { title: 'Comments', name: 'Description' },
-      startTime: { title: 'From', name: 'StartTime' },
-      endTime: { title: 'To', name: 'EndTime' }
+      subject: { title: 'Tantárgy neve', name: 'Subject' },
+      location: { title: 'Helyszín', name: 'Location' },
+      description: { title: 'Tárgyleírás', name: 'Description' },
+      startTime: { title: 'Mikortól?', name: 'StartTime' },
+      endTime: { title: 'Meddig?', name: 'EndTime' }
     }
   };
 
@@ -83,7 +83,7 @@ export class HomeComponent {
     }
     if (args.elementType === 'emptyCells' && args.element.classList.contains('e-resource-left-td')) {
       const target: HTMLElement = args.element.querySelector('.e-resource-text') as HTMLElement;
-      target.innerHTML = '<div class="name">Rooms</div><div class="type">Type</div><div class="capacity">Capacity</div>';
+      target.innerHTML = '<div class="name">Terem</div><div class="type">Típus</div><div class="capacity">Férőhely</div>';
     }
   }
 
