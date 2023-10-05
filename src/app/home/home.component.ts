@@ -34,15 +34,15 @@ export class HomeComponent {
   };
   
   public resourceDataSource: Record<string, any>[] = [
-    { text: 'IF-01', id: 1, color: '#ea7a57', capacity: 120, type: 'Előadó' },
-    { text: 'IF-208', id: 2, color: '#7fa900', capacity: 16, type: 'Gépterem' },
-    { text: 'IF-206', id: 3, color: '#5978ee', capacity: 12, type: 'Gyakorlati' },
-    { text: 'IF-210', id: 4, color: '#fec200', capacity: 18, type: 'Gépterem' },
-    { text: 'IF-02', id: 5, color: '#df5286', capacity: 110, type: 'Előadó' },
-    { text: 'TEOKJ-107', id: 6, color: '#00bdae', capacity: 120, type: 'Előadó' },
-    { text: 'TEOKJ-108', id: 7, color: '#865fcf', capacity: 20, type: 'Gépterem' },
-    { text: 'TEOKJ-109', id: 8, color: '#1aaa55', capacity: 14, type: 'Gyakorlati' },
-    { text: 'TEOKJ-201', id: 9, color: '#df5286', capacity: 14, type: 'Gépterem' },
+    { text: 'IF-01', id: 1, color: '#3ACCCC', capacity: 120, type: 'Előadó' },
+    { text: 'IF-208', id: 2, color: '#57AAEE', capacity: 16, type: 'Gépterem' },
+    { text: 'IF-206', id: 3, color: '#25B000', capacity: 12, type: 'Gyakorlati' },
+    { text: 'IF-210', id: 4, color: '#AD79E5', capacity: 18, type: 'Gépterem' },
+    { text: 'IF-02', id: 5, color: '#ED70A7', capacity: 110, type: 'Előadó' },
+    { text: 'TEOKJ-107', id: 6, color: '#ED2727', capacity: 120, type: 'Előadó' },
+    { text: 'TEOKJ-108', id: 7, color: '#F9C112', capacity: 20, type: 'Gépterem' },
+    { text: 'TEOKJ-109', id: 8, color: '#6BD806', capacity: 14, type: 'Gyakorlati' },
+    { text: 'TEOKJ-201', id: 9, color: '#FF6400', capacity: 14, type: 'Gépterem' },
     { text: 'TEOKJ-202', id: 10, color: '#710193', capacity: 10, type: 'Gyakorlati' }
   ];
   
