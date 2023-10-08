@@ -1,0 +1,6 @@
+<h1>Az én fiókom</h1>
+<p *ngIf="account">
+    <strong>Teljes név: </strong> {{account.title}} {{account.firstName}} {{account.lastName}}<br />
+    <strong>Email cím: </strong> {{account.email}}
+</p>
+<p><a routerLink="update">Fiók módosítása</a></p>

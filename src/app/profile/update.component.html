@@ -1,0 +1,71 @@
+<h1>Fiók módosítása</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="mb-3 col-2">
+            <label class="form-label">Megnevezés</label>
+            <select formControlName="title" class="form-select" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                <option value=""></option>
+                <option value="Mr.">Mr.</option>
+                <option value="Mrs.">Mrs.</option>
+                <option value="Miss">Miss</option>
+                <option value="Dr.">Dr.</option>
+            </select>
+            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                <div *ngIf="f.title.errors.required">Megnevezés szükséges!</div>
+            </div>
+        </div>
+        <div class="mb-3 col-5">
+            <label class="form-label">Keresztnév</label>
+            <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors.required">Keresztnév szükséges!</div>
+            </div>
+        </div>
+        <div class="mb-3 col-5">
+            <label class="form-label">Vezetéknév</label>
+            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                <div *ngIf="f.lastName.errors.required">Vezetéknév szükséges!</div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email cím</label>
+        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email cím szükséges!</div>
+            <div *ngIf="f.email.errors.email">Adjon meg egy helyes email címet!</div>
+        </div>
+    </div>
+    <h3 class="pt-3">Jelszó megváltoztatása</h3>
+    <p>Hagyja üresen a régi jelszó megőrzéséért</p>
+    <div class="row">
+        <div class="mb-3 col">
+            <label class="form-label">Jelszó</label>
+            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Jelszó szükséges!</div>
+                <div *ngIf="f.password.errors.minlength">A jelszónak legalább 6 karakter hosszúnak kell lennie!</div>
+            </div>
+        </div>
+        <div class="mb-3 col">
+            <label class="form-label">Jelszó megerősítése</label>
+            <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.confirmPassword.errors.required">A jelszót meg kell erősíteni!</div>
+                <div *ngIf="f.confirmPassword.errors.mustMatch">A jelszavaknak egyezniük kell!</div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <button type="submit" [disabled]="submitting" class="btn btn-primary me-2">
+            <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+            Módosítás
+        </button>
+        <button type="button" (click)="onDelete()" [disabled]="deleting" class="btn btn-danger">
+            <span *ngIf="deleting" class="spinner-border spinner-border-sm me-1"></span>
+            Törlés
+        </button>
+        <a routerLink="../" href="" class="btn btn-link">Mégse</a>
+    </div>
+</form>

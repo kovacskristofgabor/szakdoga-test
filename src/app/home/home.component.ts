@@ -6,7 +6,6 @@ import {
 } from '@syncfusion/ej2-angular-schedule';
 import { roomData } from './data';
 
-import { User } from '@app/_models';
 import { AccountService } from '@app/_services';
 
 @Component({ 
@@ -18,11 +17,9 @@ import { AccountService } from '@app/_services';
 })
 
 export class HomeComponent {
-    user: User | null;
+  account = this.accountService.accountValue;
 
-    constructor(private accountService: AccountService) {
-        this.user = this.accountService.userValue;
-    }
+    constructor(private accountService: AccountService) { }
 
   public selectedDate: Date = new Date(2021, 7, 2);
   public timeScale: TimeScaleModel = { interval: 60, slotCount: 1 };

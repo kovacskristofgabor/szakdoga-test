@@ -1,0 +1,32 @@
+<h1>Fiókok</h1>
+<p>Módosítsa vagy törölje a meglévő fiókokat vagy hozzon létre újakat!</p>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Fiók hozzáadása</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width:30%">Teljes név</th>
+            <th style="width:30%">Email cím</th>
+            <th style="width:30%">Beosztás</th>
+            <th style="width:10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let account of accounts">
+            <td class="align-middle">{{account.title}} {{account.firstName}} {{account.lastName}}</td>
+            <td class="align-middle">{{account.email}}</td>
+            <td class="align-middle">{{account.role}}</td>
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{account.id}}" class="btn btn-sm btn-primary me-1">Módosítás</a>
+                <button (click)="deleteAccount(account.id)" class="btn btn-sm btn-danger btn-delete-account" [disabled]="account.isDeleting">
+                    <span *ngIf="account.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!account.isDeleting">Törlés</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!accounts">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

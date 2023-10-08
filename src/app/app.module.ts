@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -6,39 +6,33 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
 
-import { AppComponent } from './app.component';
-import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
-import { SharedModule } from './home/shared.module';
-import { LoginComponent, RegisterComponent } from './account';
 import { AppRoutingModule } from './app-routing.module';
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { JwtInterceptor, ErrorInterceptor, appInitializer } from './_helpers';
+import { AccountService } from './_services';
+import { AppComponent } from './app.component';
+import { SharedModule } from './home/shared.module';
 import { AlertComponent } from './_components';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
     AlertComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ScheduleModule, 
-    RecurrenceEditorModule, 
-    SharedModule, 
+    SharedModule,
     AppRoutingModule
   ],
   providers: [
+    { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider, 
-    DayService, 
-    WeekService, 
-    WorkWeekService, 
-    MonthService, 
-    MonthAgendaService],
-  bootstrap: [AppComponent]
+
+    // provider used to create fake backend
+    fakeBackendProvider
+],
+bootstrap: [AppComponent]
 })
 export class AppModule { }

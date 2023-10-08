@@ -1,0 +1,85 @@
+<h1>{{title}}</h1>
+<form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="mb-3 col-2">
+            <label class="form-label">Megnevezés</label>
+            <select formControlName="title" class="form-select" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                <option value=""></option>
+                <option value="Mr.">Mr.</option>
+                <option value="Mrs.">Mrs.</option>
+                <option value="Miss.">Miss</option>
+                <option value="Dr.">Dr.</option>
+            </select>
+            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                <div *ngIf="f.title.errors.required">Megnevezés szükséges!</div>
+            </div>
+        </div>
+        <div class="mb-3 col-5">
+            <label class="form-label">Keresztnév</label>
+            <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors.required">Keresztnév szükséges!</div>
+            </div>
+        </div>
+        <div class="mb-3 col-5">
+            <label class="form-label">Vezetéknév</label>
+            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                <div *ngIf="f.lastName.errors.required">Vezetéknév szükséges!</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3 col-7">
+            <label class="form-label">Email cím</label>
+            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email cím szükséges!</div>
+                <div *ngIf="f.email.errors.email">Adjon meg egy helyes email címet!</div>
+            </div>
+        </div>
+        <div class="mb-3 col-5">
+            <label class="form-label">Beosztás</label>
+            <select formControlName="role" class="form-select" [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
+                <option value=""></option>
+                <option value="User">Felhasználó</option>
+                <option value="Admin">Adminisztrátor</option>
+            </select>
+            <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+                <div *ngIf="f.role.errors.required">Beosztás szükséges!</div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="id">
+        <h3 class="pt-3">Jelszó megváltoztatása</h3>
+        <p>Hagyja üresen a régi jelszó megőrzéséért</p>
+    </div>
+    <div class="row">
+        <div class="mb-3 col">
+            <label class="form-label">Jelszó</label>
+            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Jelszó szükséges!</div>
+                <div *ngIf="f.password.errors.minlength">A jelszónak legalább 6 karakter hosszúnak kell lennie!</div>
+            </div>
+        </div>
+        <div class="mb-3 col">
+            <label class="form-label">Jelszó megerősítése</label>
+            <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.confirmPassword.errors.required">A jelszót meg kell erősíteni!</div>
+                <div *ngIf="f.confirmPassword.errors.mustMatch">A jelszavaknak egyezniük kell!</div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <button [disabled]="submitting" class="btn btn-primary">
+            <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+            Mentés
+        </button>
+        <a routerLink="/admin/accounts" class="btn btn-link">Mégse</a>
+    </div>
+</form>
+<div *ngIf="loading" class="text-center m-5">
+    <span class="spinner-border spinner-border-lg align-center"></span>
+</div>

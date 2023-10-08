@@ -4,12 +4,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '@app/_services';
+import { MustMatch } from '@app/_helpers';
 
-@Component({ templateUrl: 'login.component.html' })
-export class LoginComponent implements OnInit {
+@Component({ templateUrl: 'update.component.html' })
+export class UpdateComponent implements OnInit {
+    account = this.accountService.accountValue!;
     form!: FormGroup;
     submitting = false;
     submitted = false;
+    deleting = false;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -21,8 +24,14 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.formBuilder.group({
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', Validators.required]
+            title: [this.account.title, Validators.required],
+            firstName: [this.account.firstName, Validators.required],
+            lastName: [this.account.lastName, Validators.required],
+            email: [this.account.email, [Validators.required, Validators.email]],
+            password: ['', [Validators.minLength(6)]],
+            confirmPassword: ['']
+        }, {
+            validator: MustMatch('password', 'confirmPassword')
         });
     }
 
@@ -41,18 +50,28 @@ export class LoginComponent implements OnInit {
         }
 
         this.submitting = true;
-        this.accountService.login(this.f.email.value, this.f.password.value)
+        this.accountService.update(this.account.id!, this.form.value)
             .pipe(first())
             .subscribe({
                 next: () => {
-                    // get return url from query parameters or default to home page
-                    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-                    this.router.navigateByUrl(returnUrl);
+                    this.alertService.success('Módosítás sikeres!', { keepAfterRouteChange: true });
+                    this.router.navigate(['../'], { relativeTo: this.route });
                 },
                 error: error => {
                     this.alertService.error(error);
                     this.submitting = false;
                 }
             });
+    }
+
+    onDelete() {
+        if (confirm('Biztos vagy benne?')) {
+            this.deleting = true;
+            this.accountService.delete(this.account.id!)
+                .pipe(first())
+                .subscribe(() => {
+                    this.alertService.success('A fiók sikeresen törlődött.', { keepAfterRouteChange: true });
+                });
+        }
     }
 }
