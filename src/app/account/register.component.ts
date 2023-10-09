@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
             confirmPassword: ['', Validators.required],
+            acceptTerms: [false, Validators.requiredTrue]
         }, {
             validator: MustMatch('password', 'confirmPassword')
         });
@@ -52,7 +53,7 @@ export class RegisterComponent implements OnInit {
             .pipe(first())
             .subscribe({
                 next: () => {
-                    this.alertService.success('Regisztráció sikeres, kövesse az email-ben kapott utasításokat a fiók megerősítéséhez!', { keepAfterRouteChange: true });
+                    this.alertService.success('Regisztráció sikeres, kérem kövesse az email-ben elküldött utasításokat!', { keepAfterRouteChange: true });
                     this.router.navigate(['../login'], { relativeTo: this.route });
                 },
                 error: error => {

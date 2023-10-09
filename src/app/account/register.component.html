@@ -56,6 +56,11 @@
                 </div>
             </div>
         </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
+            <label for="acceptTerms" class="form-check-label">Felhasználási feltételek elfogadása</label>
+            <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Felhasználási feltételeket el kell fogadni!</div>
+        </div>
         <div class="mb-3">
             <button [disabled]="submitting" class="btn btn-primary">
                 <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>

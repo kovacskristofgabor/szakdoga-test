@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-// used to create fake backend
+// used to create fake backend (uncomment and start real backend)
 import { fakeBackendProvider } from './_helpers';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,7 +30,7 @@ import { AlertComponent } from './_components';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
-    // provider used to create fake backend
+    // provider used to create fake backend (uncomment and start real backend)
     fakeBackendProvider
 ],
 bootstrap: [AppComponent]
