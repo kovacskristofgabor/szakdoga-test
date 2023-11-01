@@ -1,9 +1,9 @@
-<h3 class="card-header">Email cím érvényesítése</h3>
-<div class="card-body">
+<h3 class="card-header" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">Email cím érvényesítése</h3>
+<div class="card-body" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
     <div *ngIf="emailStatus == EmailStatus.Verifying">
         Érvényesítés...
     </div>
     <div *ngIf="emailStatus == EmailStatus.Failed">
-        Az Érvényesítés sikertelen, de újra megpróbálhatja az <a routerLink="forgot-password">"elfelejtettem a jelszavam"</a> oldalon.
+        Az érvényesítés sikertelen, de újra megpróbálhatja az <a routerLink="forgot-password">elfelejtettem a jelszavam</a> oldalon.
     </div>
 </div>
