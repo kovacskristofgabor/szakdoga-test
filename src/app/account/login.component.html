@@ -18,14 +18,14 @@
         </div>
         <div class="row">
             <div class="mb-3 col">
-                <button [disabled]="submitting" class="btn btn-primary">
+                <button [disabled]="submitting" class="btn btn-primary" style="background-color: rgb(51, 51, 153); color: white;">
                     <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
                     Belépés
                 </button>
-                <a routerLink="../register" class="btn btn-link">Regisztráció</a>
+                <a routerLink="../register" class="btn btn-link" style="color: rgb(51, 51, 153);">Regisztráció</a>
             </div>
             <div class="mb-3 col text-end">
-                <a routerLink="../forgot-password" class="btn btn-link pe-0">Elfelejtette a jelszavát?</a>
+                <a routerLink="../forgot-password" class="btn btn-link pe-0" style="color: rgb(51, 51, 153);">Elfelejtette a jelszavát?</a>
             </div>
         </div>
     </form>

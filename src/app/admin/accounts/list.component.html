@@ -16,7 +16,7 @@
             <td class="align-middle">{{account.email}}</td>
             <td class="align-middle">{{account.role}}</td>
             <td style="white-space: nowrap">
-                <a routerLink="edit/{{account.id}}" class="btn btn-sm btn-primary me-1">Módosítás</a>
+                <a routerLink="edit/{{account.id}}" class="btn btn-sm btn-primary me-1" style="background-color: rgb(51, 51, 153); color: white;">Módosítás</a>
                 <button (click)="deleteAccount(account.id)" class="btn btn-sm btn-danger btn-delete-account" [disabled]="account.isDeleting">
                     <span *ngIf="account.isDeleting" class="spinner-border spinner-border-sm"></span>
                     <span *ngIf="!account.isDeleting">Törlés</span>
